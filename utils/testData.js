@@ -11,14 +11,15 @@ export const positiveUsers = [
   "error_user",
   "visual_user",
 ];
-export const password = "secret_sauce";
+export const correctPassword = "secret_sauce";
 
 export const negativeUsers = {
   name: "locked_out_user",
   expected: "Epic sadface: Sorry, this user has been locked out.",
 };
 
-export const invalidScenarios = [
+
+export const invalidUsers = [
   {
     name: "standard_user",
     password: "incorrect_password",

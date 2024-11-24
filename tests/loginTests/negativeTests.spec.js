@@ -1,18 +1,22 @@
 import { test, expect } from "@playwright/test";
 import { siteURL } from "../../utils/testData.js";
-import { invalidScenarios } from "../../utils/testData.js";
+import { invalidUsers } from "../../utils/testData.js";
 import { login } from "../../utils/testActions.js";
 
 test.describe.only("Suite", () => {
   test.beforeEach("", async ({ page }) => {
     await page.goto(siteURL);
-    // add assertion that the wesite opened
+    await expect(page.locator("data-test=login-credentials")).toContainText(
+      "Accepted usernames are"
+    );
   });
-});
 
-for (const scenario of invalidScenarios) {
-  test(`${scenario.name}, ${scenario.password}`, async ({ page }) => {
-    await login(page, scenario.name, scenario.password);
-    await expect(page.locator(".title")).toHaveText(scenario.errorMessage);
-  });
-}
+  for (const invalidUser of invalidUsers) {
+    test(`${invalidUser.name}, ${invalidUser.password}`, async ({ page }) => {
+      await login(page, invalidUser.name, invalidUser.password);
+      await expect(page.locator("data-test=error")).toContainText(
+        invalidUser.errorMessage
+      );
+    });
+  }
+});
