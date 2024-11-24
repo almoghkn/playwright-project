@@ -13,9 +13,45 @@ export const positiveUsers = [
 ];
 export const password = "secret_sauce";
 
-export const negativeUsers = {name:"locked_out_user",expected: "Epic sadface: Sorry, this user has been locked out."};
+export const negativeUsers = {
+  name: "locked_out_user",
+  expected: "Epic sadface: Sorry, this user has been locked out.",
+};
 
-export function Negativelogin(userName, userPassword) {
-  
-  return;
-}
+
+
+export const invalidScenarios = [
+  {
+    name: "standard_user",
+    password: "incorrect_password",
+    errorMessage:
+      "Epic sadface: Username and password do not match any user in this service",
+  },
+  {
+    name: "incorrect_username",
+    password: "secret_sauce",
+    errorMessage:
+      "Epic sadface: Username and password do not match any user in this service",
+  },
+  {
+    name: "incorrect_username",
+    password: "incorrect_password",
+    errorMessage:
+      "Epic sadface: Username and password do not match any user in this service",
+  },
+  {
+    name: "",
+    password: "secret_sauce",
+    errorMessage: "Epic sadface: Username is required",
+  },
+  {
+    name: "standard_user",
+    password: "",
+    errorMessage: "Epic sadface: Password is required",
+  },
+  {
+    name: "",
+    password: "",
+    errorMessage: "Epic sadface: Username is required",
+  },
+];
