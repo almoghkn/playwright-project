@@ -18,8 +18,6 @@ export const negativeUsers = {
   expected: "Epic sadface: Sorry, this user has been locked out.",
 };
 
-
-
 export const invalidScenarios = [
   {
     name: "standard_user",
