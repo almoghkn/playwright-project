@@ -12,3 +12,10 @@ export const positiveUsers = [
   "visual_user",
 ];
 export const password = "secret_sauce";
+
+export const negativeUsers = {name:"locked_out_user",expected: "Epic sadface: Sorry, this user has been locked out."};
+
+export function Negativelogin(userName, userPassword) {
+  
+  return;
+}
