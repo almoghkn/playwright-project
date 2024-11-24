@@ -4,7 +4,7 @@ import { invalidUsers } from "../../utils/testData.js";
 import { login } from "../../utils/testActions.js";
 
 test.describe.only("Suite", () => {
-  test.beforeEach("", async ({ page }) => {
+  test.beforeEach("verify that the site loaded", async ({ page }) => {
     await page.goto(siteURL);
     await expect(page.locator("data-test=login-credentials")).toContainText(
       "Accepted usernames are"
@@ -12,7 +12,9 @@ test.describe.only("Suite", () => {
   });
 
   for (const invalidUser of invalidUsers) {
-    test(`${invalidUser.name}, ${invalidUser.password}`, async ({ page }) => {
+    test(`Negative login with ${invalidUser.name}, ${invalidUser.password}`, async ({
+      page,
+    }) => {
       await login(page, invalidUser.name, invalidUser.password);
       await expect(page.locator("data-test=error")).toContainText(
         invalidUser.errorMessage
