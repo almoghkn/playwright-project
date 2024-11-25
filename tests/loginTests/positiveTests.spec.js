@@ -4,11 +4,19 @@ import { positiveUsers } from "../../utils/testData.js";
 import { correctPassword } from "../../utils/testData.js";
 import { login } from "../../utils/testActions.js";
 
+test.describe("Suite positive", () => {
+  test.beforeEach("verify that the site loaded", async ({ page }) => {
+    await page.goto(siteURL);
+    await expect(page.locator("data-test=login-credentials")).toContainText(
+      "Accepted usernames are"
+    );
+  });
 for (let name of positiveUsers) {
-  test(`Positive login with ${name}`, async ({ page }) => { // Put this test is a test suite - test.describe
+  test(`Positive login with ${name}`, async ({ page }) => {
     await page.goto(siteURL);
     await login(page, name, correctPassword);
-    // you missed a validation step. you need to validate the url after the user redirect to the homepage.
+    await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html")
     await expect(page.locator(".title")).toContainText("Products");
   });
 }
+});

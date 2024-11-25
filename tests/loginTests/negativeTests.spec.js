@@ -3,7 +3,7 @@ import { siteURL } from "../../utils/testData.js";
 import { invalidUsers } from "../../utils/testData.js";
 import { login } from "../../utils/testActions.js";
 
-test.describe("Suite", () => {
+test.describe("Suite negative", () => {
   test.beforeEach("verify that the site loaded", async ({ page }) => {
     await page.goto(siteURL);
     await expect(page.locator("data-test=login-credentials")).toContainText(

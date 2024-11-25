@@ -6,8 +6,7 @@ import {overviewURL} from '../../utils/testData.js'
 import {completeURL} from '../../utils/testData.js'
 
 test.describe('tests', () => {
-    test('add products to cart', async ({page}) => {
-        // you test case name is not adding products to the cart. you testing here that a user can add items to the cart and complete the purchase flow. think of a better test case name for this use case.
+    test('check the comleting of purchase flow', async ({page}) => {
         await page.goto(siteURL)
         await expect(page).toHaveURL(siteURL)
         await page.locator('[data-test="username"]').click()
@@ -26,7 +25,7 @@ test.describe('tests', () => {
         await page.locator('[data-test="shopping-cart-link"]').click()
         await expect(page).toHaveURL(cartURL)
         await expect(page.locator('.title')).toContainText('Your Cart')
-        await expect(page.locator('.shopping_cart_badge')).toHaveText('2') // this is not what i asked to validate. you need to validate that there are actual 2 items in the cart overview page.
+        await expect(page.locator('data-test=inventory-item')).toHaveCount(2)
         await page.locator('[data-test="checkout"]').click()
         await expect(page).toHaveURL(informationURL)
         await expect(page.locator('.title')).toContainText(
